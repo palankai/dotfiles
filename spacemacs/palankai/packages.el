@@ -30,7 +30,7 @@
 ;;; Code:
 
 (defconst palankai-packages
-  '()
+  '(sr-speedbar)
   "The list of Lisp packages required by the palankai layer.
 
 Each entry is either:
@@ -61,6 +61,11 @@ Each entry is either:
 (setq create-lockfiles nil)
 (setq confirm-kill-emacs 'y-or-n-p)
 
+(defun palankai/init-sr-speedbar ()
+    (use-package sr-speedbar)
+)
+
+
 (defun cs/runner (cmd)
   (interactive
    (let ((string (read-string (concat "Command: ") nil 'runner-history)))
@@ -68,7 +73,7 @@ Each entry is either:
   (save-some-buffers t)
   (let* ((default-directory cs-project-root)
          )
-    (compile (concat "wswrap " cs-workspace " " cmd))))
+    (compile (concat "wrapws " cs-workspace " " cmd))))
 
 (defun cs/rerunner ()
   (interactive)
