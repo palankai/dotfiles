@@ -62,7 +62,10 @@ Each entry is either:
 (setq confirm-kill-emacs 'y-or-n-p)
 
 (defun palankai/init-sr-speedbar ()
-    (use-package sr-speedbar)
+  (use-package sr-speedbar
+    :config
+    (spacemacs/set-leader-keys "os" 'sr-speedbar-toggle)
+   )
 )
 
 
