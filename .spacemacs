@@ -31,6 +31,7 @@ This function should only modify configuration layer settings."
    dotspacemacs-configuration-layers
    '(javascript
      markdown
+     yaml
      (python :variables
              python-test-runner 'pytest)
      ;; ----------------------------------------------------------------
@@ -361,6 +362,20 @@ before packages are loaded."
   ;; (modify-syntax-entry ?_ "w")
   (with-eval-after-load 'evil
     (defalias #'forward-evil-word #'forward-evil-symbol))
+  (setq powerline-default-separator 'utf-8)
+
+  (setq custom-file "~/.spacemacs.custom")
+  (load custom-file t)
+  ;; (load-file custom-file)
+
+  ;; Load any machine specific settings.
+  (condition-case error
+      (progn
+        (load-file "~/.spacemacs.machine-local")
+        (message "Loaded local user settings"))
+    (file-error
+     (message "Skipping ~/.spacemacs.machine-local"))
+    nil)
 )
 
 ;; Do not write anything past this comment. This is where Emacs will
@@ -377,20 +392,7 @@ This function is called at the very end of Spacemacs initialization."
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (restclient-helm ob-restclient ob-http company-restclient restclient know-your-http-well web-beautify livid-mode skewer-mode json-mode json-snatcher json-reformat js2-refactor multiple-cursors js2-mode js-doc impatient-mode htmlize simple-httpd helm-gtags ggtags flycheck company-tern tern coffee-mode add-node-modules-path vmd-mode mmm-mode markdown-toc markdown-mode gh-md emoji-cheat-sheet-plus company-emoji yapfify xterm-color ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org symon string-inflection sr-speedbar spaceline powerline smeargle shell-pop restart-emacs rainbow-delimiters pyvenv pytest pyenv-mode py-isort popwin pip-requirements persp-mode pcre2el password-generator paradox spinner org-plus-contrib org-bullets open-junk-file neotree multi-term move-text magit-gitflow macrostep lorem-ipsum live-py-mode linum-relative link-hint info+ indent-guide hydra hy-mode dash-functional hungry-delete hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation hide-comnt help-fns+ helm-themes helm-swoop helm-pydoc helm-purpose window-purpose imenu-list helm-projectile helm-mode-manager helm-make projectile pkg-info epl helm-gitignore request helm-flx helm-descbinds helm-company helm-c-yasnippet helm-ag google-translate golden-ratio gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link fuzzy flx-ido flx fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit magit magit-popup git-commit with-editor evil-lisp-state smartparens evil-lion evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-ediff evil-args evil-anzu anzu evil goto-chg undo-tree eval-sexp-fu highlight eshell-z eshell-prompt-extras esh-help elisp-slime-nav editorconfig dumb-jump diminish define-word cython-mode company-statistics company-anaconda company column-enforce-mode clean-aindent-mode bind-map bind-key auto-yasnippet yasnippet auto-highlight-symbol auto-compile packed anaconda-mode pythonic f dash s aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line helm avy helm-core async ac-ispell auto-complete popup)))
- '(safe-local-variable-values
-   (quote
-    ((cs-workspace . "made-hacienda")
-     (cs-project-root . "/Users/csaba/work/made.com/hacienda")
-     (encoding . utf-8)
-     (cs-fn-1 . "../run_erp.sh test ")
-     (cs-run-prefix . "../run_erp.sh test ")
-     (cs-run-env . "")
-     (cs-run-path . "/Users/csaba/anaconda/envs/made-erp/bin")
-     (cs-python . "/Users/csaba/anaconda/envs/made-erp/bin/python")
-     (cs-project-root . "/Users/csaba/work/made.com/erp/erp_core")
-     (cs-workspace . "made-procurement")
-     (cs-project-root . "/Users/csaba/work/made.com/procurement")))))
+    (yaml-mode yapfify xterm-color ws-butler winum which-key web-beautify volatile-highlights vi-tilde-fringe uuidgen use-package toc-org symon string-inflection sr-speedbar spaceline smeargle shell-pop restclient-helm restart-emacs rainbow-delimiters pyvenv pytest pyenv-mode py-isort popwin pip-requirements persp-mode pcre2el password-generator paradox org-plus-contrib org-bullets open-junk-file ob-restclient ob-http neotree multi-term move-text mmm-mode markdown-toc magit-gitflow macrostep lorem-ipsum livid-mode live-py-mode linum-relative link-hint json-mode js2-refactor js-doc info+ indent-guide hy-mode hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation hide-comnt help-fns+ helm-themes helm-swoop helm-pydoc helm-purpose helm-projectile helm-mode-manager helm-make helm-gitignore helm-flx helm-descbinds helm-company helm-c-yasnippet helm-ag google-translate golden-ratio gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link gh-md fuzzy flx-ido fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit evil-lisp-state evil-lion evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-args evil-anzu eval-sexp-fu eshell-z eshell-prompt-extras esh-help elisp-slime-nav editorconfig dumb-jump define-word cython-mode company-tern company-statistics company-restclient company-anaconda column-enforce-mode coffee-mode clean-aindent-mode auto-yasnippet auto-highlight-symbol auto-compile aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line ac-ispell))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
