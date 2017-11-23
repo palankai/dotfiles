@@ -48,8 +48,8 @@ This function should only modify configuration layer settings."
      neotree
      ;; org
      (shell :variables
-            shell-default-height 30
-            shell-default-position 'bottom)
+            ;; shell-default-height 30
+            shell-default-position 'right)
      ;; spell-checking
      ;; syntax-checking
      ;; version-control
@@ -128,7 +128,10 @@ It should only modify the values of Spacemacs settings."
    ;; List sizes may be nil, in which case
    ;; `spacemacs-buffer-startup-lists-length' takes effect.
    dotspacemacs-startup-lists '((recents . 5)
-                                (projects . 7))
+                                (projects . 7)
+                                (bookmarks . 7)
+                                (agenda . 7)
+                                (todos . 7))
    ;; True if the home buffer should respond to resize events. (default t)
    dotspacemacs-startup-buffer-responsive t
    ;; Default major mode of the scratch buffer (default `text-mode')
@@ -363,6 +366,11 @@ before packages are loaded."
   (with-eval-after-load 'evil
     (defalias #'forward-evil-word #'forward-evil-symbol))
   (setq powerline-default-separator 'utf-8)
+  ;; Set the 80 column indicator
+  (display-time-mode)
+
+  ;; Disable highlight
+  (global-hl-line-mode -1)
 
   (setq custom-file "~/.spacemacs.custom")
   (load custom-file t)
