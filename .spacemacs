@@ -48,8 +48,8 @@ This function should only modify configuration layer settings."
      neotree
      ;; org
      (shell :variables
-            ;; shell-default-height 30
-            shell-default-position 'right)
+            shell-default-height 30
+            shell-default-position 'bottom)
      ;; spell-checking
      ;; syntax-checking
      ;; version-control
@@ -368,7 +368,9 @@ before packages are loaded."
   (setq powerline-default-separator 'utf-8)
   ;; Set the 80 column indicator
   (display-time-mode)
-
+  ;; Split right side
+  (setq split-width-threshold 90)
+  (setq split-height-threshold 120)
   ;; Disable highlight
   (global-hl-line-mode -1)
 
